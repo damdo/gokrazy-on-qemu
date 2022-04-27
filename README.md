@@ -1,7 +1,7 @@
 ## gokrazy-emulator
-A qemu emulator to develop/run gokrazy
+A qemu emulator to develop for the https://gokrazy.org environment
 
-```
+```bash
 vagrant up && vagrant ssh
 
 # once within the vm shell
