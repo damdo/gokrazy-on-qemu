@@ -1,0 +1,3 @@
+gokr-packer
+*.img
+.vagrant/
