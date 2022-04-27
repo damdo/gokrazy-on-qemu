@@ -270,6 +270,8 @@ github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFR
 github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/rtr7/dhcp4 v0.0.0-20181120124042-778e8c2e24a5/go.mod h1:FwstIpm6vX98QgtR8KEwZcVjiRn2WP76LjXAHj84fK0=
 github.com/rtr7/dhcp4 v0.0.0-20220302171438-18c84d089b46 h1:3psQveH4RUiv5yc3p7kRySilf1nSXLQhAvJFwg4fgnE=
+github.com/rtr7/kernel v0.0.0-20220427062034-97bb58b0365a h1:fbDqtJFBM8WZMs3cvY7rwbx+7WmFei21a6JuaZ5lf6I=
+github.com/rtr7/kernel v0.0.0-20220427062034-97bb58b0365a/go.mod h1:aGv3IBx6ZK5wEMbnar2BrYsK12SqiaJV37RHfuXfmVs=
 github.com/safchain/ethtool v0.2.0 h1:dILxMBqDnQfX192cCAPjZr9v2IgVXeElHPy435Z/IdE=
 github.com/safchain/ethtool v0.2.0/go.mod h1:WkKB1DnNtvsMlDmQ50sgwowDJV/hGbJSOvJoEXs1AJQ=
 github.com/siebenmann/go-kstat v0.0.0-20210513183136-173c9b0a9973/go.mod h1:G81aIFAMS9ECrwBYR9YxhlPjWgrItd+Kje78O6+uqm8=

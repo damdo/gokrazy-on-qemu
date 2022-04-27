@@ -5,17 +5,27 @@
 # ---------------------------
 gokr_packer_version="v0.0.0-20220422110459-ac316a3ee928"
 hostname="gokrazy"
-arch="arm64"
-#kernel_package="github.com/rtr7/kernel"
-#firmware_package="github.com/rtr7/kernel"
-kernel_package="github.com/gokrazy/kernel"
-firmware_package="github.com/gokrazy/firmware"
 components=(
   github.com/gokrazy/breakglass
   github.com/gokrazy/serial-busybox
   github.com/prometheus/node_exporter@5ea0a93
   github.com/gokrazy/timestamps
 )
+arch="${GK_ARCH:=amd64}"
+case $arch in
+  arm64)
+    kernel_package="github.com/gokrazy/kernel"
+    firmware_package="github.com/gokrazy/firmware"
+    ;;
+  amd64)
+    kernel_package="github.com/rtr7/kernel"
+    firmware_package="github.com/rtr7/kernel"
+    ;;
+  *)
+    echo -n "unsupported arch ${arch}"
+    exit
+    ;;
+esac
 
 # ---------------------------
 # GOKR-PACKER SETUP

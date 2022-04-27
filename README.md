@@ -1,5 +1,5 @@
 ## gokrazy-emulator
-An qemu emulator to develop/run gokrazy
+A qemu emulator to develop/run gokrazy
 
 ```
 vagrant up && vagrant ssh
