@@ -3,7 +3,8 @@
 # ---------------------------
 # VARS
 # ---------------------------
-gokr_packer_version="v0.0.0-20220422110459-ac316a3ee928"
+#gokr_packer_version="v0.0.0-20220422110459-ac316a3ee928"
+gokr_packer_version="v0.0.0-20220430002421-cee0e14dde6c"
 hostname="gokrazy"
 components=(
   github.com/gokrazy/breakglass
@@ -11,7 +12,7 @@ components=(
   github.com/prometheus/node_exporter@5ea0a93
   github.com/gokrazy/timestamps
 )
-arch="${GK_ARCH:=amd64}"
+arch="${GOARCH:=amd64}"
 case $arch in
   arm64)
     kernel_package="github.com/gokrazy/kernel"
@@ -30,11 +31,11 @@ esac
 # ---------------------------
 # GOKR-PACKER SETUP
 # ---------------------------
-version="$(GOBIN=$(pwd) go version -m ./gokr-packer 2>/dev/null | grep mod | sed 's/[[:space:]]/,/g' | cut -d ',' -f4)"
+version="$(GOBIN=$(pwd) GOARCH=amd64 go version -m ./gokr-packer 2>/dev/null | grep mod | sed 's/[[:space:]]/,/g' | cut -d ',' -f4)"
 if [[ ${gokr_packer_version} != ${version} ]]; then
   echo "gokr-packer version '${version}' is not the desired one '${gokr_packer_version}'"
   echo "fetching '${gokr_packer_version}'.."
-  GOBIN=$(pwd) go install github.com/damdo/tools/cmd/gokr-packer@"${gokr_packer_version}"
+  GOBIN=$(pwd) GOARCH=amd64 go install github.com/damdo/tools/cmd/gokr-packer@"${gokr_packer_version}"
 fi
 
 # ---------------------------

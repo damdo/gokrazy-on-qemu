@@ -1,6 +1,6 @@
 module hello
 
-go 1.17
+go 1.18
 
 require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751 // indirect
@@ -16,8 +16,8 @@ require (
 	github.com/gokrazy/breakglass v0.0.0-20220417133245-48c5124500d6 // indirect
 	github.com/gokrazy/firmware v0.0.0-20220414034653-e4794d033084 // indirect
 	github.com/gokrazy/gokrazy v0.0.0-20220426183729-6f63dfee3e2b // indirect
-	github.com/gokrazy/kernel v0.0.0-20220421075155-b5912d755bdd // indirect
-	github.com/gokrazy/rpi-eeprom v0.0.0-20220320150435-c833da5fdf2b // indirect
+	github.com/gokrazy/kernel v0.0.0-20220428074446-79ddc444cba0 // indirect
+	github.com/gokrazy/rpi-eeprom v0.0.0-20220428044129-9d5655055c00 // indirect
 	github.com/gokrazy/serial-busybox v0.0.0-20211029180129-24c7ca0a91ab // indirect
 	github.com/gokrazy/timestamps v0.0.0-20200713073712-54fdc319126e // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
@@ -43,7 +43,6 @@ require (
 	github.com/prometheus/exporter-toolkit v0.7.1 // indirect
 	github.com/prometheus/node_exporter v1.3.1-0.20220425111307-5ea0a936cbd0 // indirect
 	github.com/prometheus/procfs v0.7.4-0.20211011103944-1a7a2bd3279f // indirect
-	github.com/rtr7/kernel v0.0.0-20220427062034-97bb58b0365a // indirect
 	github.com/safchain/ethtool v0.2.0 // indirect
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a // indirect
 	go.uber.org/atomic v1.7.0 // indirect

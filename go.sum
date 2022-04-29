@@ -97,10 +97,10 @@ github.com/gokrazy/gokrazy v0.0.0-20220426183729-6f63dfee3e2b/go.mod h1:pgBUUZOV
 github.com/gokrazy/internal v0.0.0-20200407065509-37efc446ad44/go.mod h1:LA5TQy7LcvYGQOy75tkrYkFUhbV2nl5qEBP47PSi2JA=
 github.com/gokrazy/internal v0.0.0-20200407075822-660ad467b7c9/go.mod h1:LA5TQy7LcvYGQOy75tkrYkFUhbV2nl5qEBP47PSi2JA=
 github.com/gokrazy/internal v0.0.0-20220129150711-9ed298107648 h1:kBuLicM0xJw3xEe4607WlnzGL+qSwPqdyh5/LUiCdq0=
-github.com/gokrazy/kernel v0.0.0-20220421075155-b5912d755bdd h1:H3uXh8nDNTS38p83wxc1+pW4QWt7FLwdj/KAv7HtXBE=
-github.com/gokrazy/kernel v0.0.0-20220421075155-b5912d755bdd/go.mod h1:9bunbYi8kxZow8AQJl4SiPmglzemYA/f3zrLgKrTmVI=
-github.com/gokrazy/rpi-eeprom v0.0.0-20220320150435-c833da5fdf2b h1:gCDIwmi3KSaeBfHtyCt+FlBKlZBm95ItvOTQct31jto=
-github.com/gokrazy/rpi-eeprom v0.0.0-20220320150435-c833da5fdf2b/go.mod h1:vabxV1M+i6S3rGuWoFieHxCJW3jlob3rqe0KV82j+0o=
+github.com/gokrazy/kernel v0.0.0-20220428074446-79ddc444cba0 h1:ZDTQ/0GzUfltJ1uJ9yvm3DwTMRVRDTONp7hSnnoW9sk=
+github.com/gokrazy/kernel v0.0.0-20220428074446-79ddc444cba0/go.mod h1:9bunbYi8kxZow8AQJl4SiPmglzemYA/f3zrLgKrTmVI=
+github.com/gokrazy/rpi-eeprom v0.0.0-20220428044129-9d5655055c00 h1:LIp9vmkDce+d8Ww0xu/8tXW4K7fiXrrQs5JkKKNV1c4=
+github.com/gokrazy/rpi-eeprom v0.0.0-20220428044129-9d5655055c00/go.mod h1:vabxV1M+i6S3rGuWoFieHxCJW3jlob3rqe0KV82j+0o=
 github.com/gokrazy/serial-busybox v0.0.0-20211029180129-24c7ca0a91ab h1:jg7jGyhoUN+32lqSq7qtNQNa1WI3jZ6xmL+ilDI66sc=
 github.com/gokrazy/serial-busybox v0.0.0-20211029180129-24c7ca0a91ab/go.mod h1:OYcG5tSb+QrelmUOO4EZVUFcIHyyZb0QDbEbZFUp1TA=
 github.com/gokrazy/timestamps v0.0.0-20200713073712-54fdc319126e h1:obZG0QbGiFvH5HeXnkGKUSIsxSSn+SCrXzVnGbBVkLA=
@@ -270,8 +270,6 @@ github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFR
 github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/rtr7/dhcp4 v0.0.0-20181120124042-778e8c2e24a5/go.mod h1:FwstIpm6vX98QgtR8KEwZcVjiRn2WP76LjXAHj84fK0=
 github.com/rtr7/dhcp4 v0.0.0-20220302171438-18c84d089b46 h1:3psQveH4RUiv5yc3p7kRySilf1nSXLQhAvJFwg4fgnE=
-github.com/rtr7/kernel v0.0.0-20220427062034-97bb58b0365a h1:fbDqtJFBM8WZMs3cvY7rwbx+7WmFei21a6JuaZ5lf6I=
-github.com/rtr7/kernel v0.0.0-20220427062034-97bb58b0365a/go.mod h1:aGv3IBx6ZK5wEMbnar2BrYsK12SqiaJV37RHfuXfmVs=
 github.com/safchain/ethtool v0.2.0 h1:dILxMBqDnQfX192cCAPjZr9v2IgVXeElHPy435Z/IdE=
 github.com/safchain/ethtool v0.2.0/go.mod h1:WkKB1DnNtvsMlDmQ50sgwowDJV/hGbJSOvJoEXs1AJQ=
 github.com/siebenmann/go-kstat v0.0.0-20210513183136-173c9b0a9973/go.mod h1:G81aIFAMS9ECrwBYR9YxhlPjWgrItd+Kje78O6+uqm8=
