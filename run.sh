@@ -3,6 +3,8 @@
 arch="${MACHINE:=amd64}"
 case $arch in
   arm64)
+    # Extract the kernel (vmlinuz) from the drive.img first
+    ./extract_kernel.sh
     qemu-system-aarch64 \
       -name gokrazy-arm64 \
       -m 4G \
@@ -18,9 +20,11 @@ case $arch in
       -append "console=tty1 console=ttyAMA0,115200 dwc_otg.fiq_fsm_enable=0 root=/dev/sda2 rw init=/gokrazy/init rootwait panic=10 oops=panic"
     ;;
   raspi3b)
-    # only works with qemu === v5.2.0
+    # Only works with qemu === v5.2.0
     # because for lower versions the usb networking is missing
-    # and because for higher versions 6.0+, the /gokrazy/init process crashes early at gokrazy.Boot()
+    # and because for higher versions 6.0+, the /gokrazy/init process crashes early at gokrazy.Boot().
+    # Extract the kernel (vmlinuz) and the dtb file from the drive.img first
+    ./extract_kernel.sh
     qemu-system-aarch64 \
         -m 1024 \
         -no-reboot \
