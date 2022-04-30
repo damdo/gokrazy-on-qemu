@@ -3,8 +3,8 @@
 # ---------------------------
 # VARS
 # ---------------------------
-#gokr_packer_version="v0.0.0-20220422110459-ac316a3ee928"
-gokr_packer_version="v0.0.0-20220430002421-cee0e14dde6c"
+gokr_packer_version="latest"
+#gokr_packer_version="v0.0.0-20220430002421-cee0e14dde6c"
 hostname="gokrazy"
 components=(
   github.com/gokrazy/breakglass
@@ -35,7 +35,7 @@ version="$(GOBIN=$(pwd) GOARCH=amd64 go version -m ./gokr-packer 2>/dev/null | g
 if [[ ${gokr_packer_version} != ${version} ]]; then
   echo "gokr-packer version '${version}' is not the desired one '${gokr_packer_version}'"
   echo "fetching '${gokr_packer_version}'.."
-  GOBIN=$(pwd) GOARCH=amd64 go install github.com/damdo/tools/cmd/gokr-packer@"${gokr_packer_version}"
+  GOBIN=$(pwd) GOARCH=amd64 go install github.com/gokrazy/tools/cmd/gokr-packer@"${gokr_packer_version}"
 fi
 
 # ---------------------------
@@ -44,6 +44,7 @@ fi
 
 # breakglass
 mkdir -p extrafiles/github.com/gokrazy/breakglass/etc/
+< /dev/zero ssh-keygen -b 2048 -t rsa -q -N ""
 cat ~/.ssh/id_*.pub > extrafiles/github.com/gokrazy/breakglass/etc/breakglass.authorized_keys
 mkdir -p flags/github.com/gokrazy/breakglass/
 echo '-authorized_keys=/etc/breakglass.authorized_keys' > flags/github.com/gokrazy/breakglass/flags.txt
@@ -65,7 +66,7 @@ done
 # ---------------------------
 # if a qemu machine with `-name gokrazy` is already running, then update and write to file
 # else just write to file.
-if [[ "$(ps -ef | grep qemu-system- | grep gokrazy-${arch} | wc -l)" -eq 1 ]]; then
+if [[ "$(ps -ef | grep qemu-system- | grep gokrazy | wc -l)" -eq 1 ]]; then
   shouldupdate="http://gokrazy:$(cat ~/.config/gokrazy/http-password.txt)@127.0.0.1:8080/"
 else
   shouldupdate=""

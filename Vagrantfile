@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/ubuntu2004"
+  config.vm.box = "ubuntu/jammy64"
   config.vm.synced_folder "./", "/home/vagrant/gokrazy-emulator"
   config.vm.provision :docker
   config.vm.provision "shell",
@@ -22,7 +22,7 @@ $provision = <<SCRIPT
 usermod -a -G docker $USER
 
 # build tools
-apt update -yq && apt install -yq qemu-system curl
+apt update -yq && apt install -yq curl
 
 # install go
 snap install go --channel="${GO_VERSION}"/stable --classic
@@ -37,4 +37,17 @@ curl -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" 
   chmod +x ./kubectl && \
   mv kubectl /usr/bin/
 echo "alias k=kubectl" >> /home/vagrant/.profile
+
+# install qemu
+sudo sed -i~orig -e 's/# deb-src/deb-src/' /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get -yq build-dep qemu
+cd /tmp && \
+  git clone git://git.qemu.org/qemu.git && \
+  curl -SLO https://download.qemu.org/qemu-5.2.0.tar.xz && \
+  cd qemu-5.2.0 && \
+  ./configure && \
+  make -j 8 && \
+  sudo make install
+
 SCRIPT

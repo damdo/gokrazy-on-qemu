@@ -3,3 +3,6 @@ gokr-packer
 .vagrant/
 vmlinuz
 *.dtb
+extrafiles\
+flags\
+qemu-*.tar.xz
