@@ -10,3 +10,4 @@ dd if=drive.img of=kernel.img skip="$s1" count="$s2"
 sudo mount -o loop kernel.img /mnt/tmp
 qemu-img resize drive.img 2G
 cp /mnt/tmp/vmlinuz .
+cp /mnt/tmp/bcm2710-rpi-3-b-plus.dtb .

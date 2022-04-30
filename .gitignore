@@ -1,3 +1,5 @@
 gokr-packer
 *.img
 .vagrant/
+vmlinuz
+*.dtb
