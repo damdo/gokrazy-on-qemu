@@ -3,8 +3,8 @@
 # ---------------------------
 # VARS
 # ---------------------------
-gokr_packer_version="latest"
-#gokr_packer_version="v0.0.0-20220430002421-cee0e14dde6c"
+gokr_packer_version="v0.0.0-20220502001104-24f8b6f1882e"
+gokr_packer_base="github.com/damdo/tools/cmd/gokr-packer"
 hostname="gokrazy"
 components=(
   github.com/gokrazy/breakglass
@@ -35,7 +35,7 @@ version="$(GOBIN=$(pwd) GOARCH=amd64 go version -m ./gokr-packer 2>/dev/null | g
 if [[ ${gokr_packer_version} != ${version} ]]; then
   echo "gokr-packer version '${version}' is not the desired one '${gokr_packer_version}'"
   echo "fetching '${gokr_packer_version}'.."
-  GOBIN=$(pwd) GOARCH=amd64 go install github.com/gokrazy/tools/cmd/gokr-packer@"${gokr_packer_version}"
+  GOBIN=$(pwd) GOARCH=amd64 go install "${gokr_packer_base}@${gokr_packer_version}"
 fi
 
 # ---------------------------
