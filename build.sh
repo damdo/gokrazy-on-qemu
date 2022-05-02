@@ -44,7 +44,10 @@ fi
 
 # breakglass
 mkdir -p extrafiles/github.com/gokrazy/breakglass/etc/
+
+if [ ! -f "$HOME/.ssh/id_rsa" ]; then
 < /dev/zero ssh-keygen -b 2048 -t rsa -q -N ""
+fi
 cat ~/.ssh/id_*.pub > extrafiles/github.com/gokrazy/breakglass/etc/breakglass.authorized_keys
 mkdir -p flags/github.com/gokrazy/breakglass/
 echo '-authorized_keys=/etc/breakglass.authorized_keys' > flags/github.com/gokrazy/breakglass/flags.txt
