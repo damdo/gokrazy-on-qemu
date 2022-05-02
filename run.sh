@@ -2,6 +2,33 @@
 
 arch="${MACHINE:=amd64}"
 case $arch in
+  # arm64 emulator with kernel auto loading
+  # it uses the QEMU_EFI bios to load /EFI/BOOT/BOOTAA64.efi which loads grub.efi,
+  # which through the config provided via grub.cfg, loads the kernel and passes params to it
+  #
+  # IMPORTANT: to work it requires the drive.img to contain in its first partition:
+  # - /EFI/BOOT/BOOTAA64.efi
+  # - /EFI/BOOT/grub.efi
+  # - /EFI/BOOT/grub.cfg
+  arm64-auto)
+    qemu-system-aarch64 \
+      -name gokrazy-arm64 \
+      -m 4G \
+      -smp $(nproc) \
+      -M virt,highmem=off \
+      -cpu cortex-a72 \
+      -nographic \
+      -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
+      -device e1000,netdev=net0 \
+      -boot order=d \
+      -drive file=drive.img \
+      -bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd \
+    ;;
+
+  # arm64 emulator with manual kernel loading
+  # requires kernel (./vmlinuz) extraction from the drive.img,
+  # to be used as an arg (with -kernel and -append)
+  # to instruct the vm on how to load the kernel
   arm64)
     # Extract the kernel (vmlinuz) from the drive.img first
     ./extract_kernel.sh
@@ -12,13 +39,20 @@ case $arch in
       -M virt,highmem=off \
       -cpu cortex-a72 \
       -nographic \
-      -drive if=none,file=drive.img,format=raw,id=mydisk \
-      -device ich9-ahci,id=ahci -device ide-hd,drive=mydisk,bus=ahci.0 \
+      -drive file=drive.img \
       -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
       -device e1000,netdev=net0 \
       -kernel vmlinuz \
-      -append "console=tty1 console=ttyAMA0,115200 dwc_otg.fiq_fsm_enable=0 root=/dev/sda2 rw init=/gokrazy/init rootwait panic=10 oops=panic"
+      -append "console=tty1 console=ttyAMA0,115200 root=PARTUUID=60c24cc1-f3f9-427a-8199-2e18c40c0001/PARTNROFF=1 init=/gokrazy/init rootwait panic=10 oops=panic"
+      #-drive if=none,file=drive.img,format=raw,id=mydisk \
+      #-device ich9-ahci,id=ahci -device ide-hd,drive=mydisk,bus=ahci.0 \
+      #-append "console=tty1 console=ttyAMA0,115200 root=/dev/sda2 rw init=/gokrazy/init rootwait panic=10 oops=panic"
     ;;
+
+  # raspi3b emulator with manual kernel loading
+  # requires kernel (./vmlinuz) and dtb file extraction from the drive.img,
+  # to be used as an arg (with -dtb, -kernel and -append)
+  # to instruct the vm on how to load the kernel
   raspi3b)
     # Only works with qemu === v5.2.0
     # because for lower versions networking is missing.
@@ -39,6 +73,8 @@ case $arch in
         -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
         -device usb-net,netdev=net0
     ;;
+
+  # amd64 emulator with kernel auto loading
   amd64)
     qemu-system-x86_64 \
       -name gokrazy-amd64 \
@@ -52,6 +88,7 @@ case $arch in
       -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
       -device e1000,netdev=net0
     ;;
+
   *)
     echo -n "unsupported arch ${arch}"
     exit
