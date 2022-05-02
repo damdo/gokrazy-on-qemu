@@ -45,6 +45,7 @@ sudo apt-get -yq build-dep qemu
 sudo apt-get -yq install itstool
 cd /tmp && \
   curl -SLO https://download.qemu.org/qemu-5.2.0.tar.xz && \
+  tar -xf qemu-5.2.0.tar.xz && \
   cd qemu-5.2.0 && \
   ./configure && \
   make -j 8 && \
