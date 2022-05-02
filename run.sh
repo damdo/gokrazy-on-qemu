@@ -13,7 +13,7 @@ case $arch in
   arm64-auto)
     qemu-system-aarch64 \
       -name gokrazy-arm64 \
-      -m 4G \
+      -m 3G \
       -smp $(nproc) \
       -M virt,highmem=off \
       -cpu cortex-a72 \
@@ -33,7 +33,7 @@ case $arch in
     ./extract_kernel.sh
     qemu-system-aarch64 \
       -name gokrazy-arm64 \
-      -m 4G \
+      -m 3G \
       -smp $(nproc) \
       -M virt,highmem=off \
       -cpu cortex-a72 \
@@ -74,7 +74,7 @@ case $arch in
   amd64)
     qemu-system-x86_64 \
       -name gokrazy-amd64 \
-      -m 4G \
+      -m 3G \
       -smp $(nproc) \
       -usb \
       -nographic \
