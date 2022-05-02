@@ -20,8 +20,7 @@ case $arch in
       -nographic \
       -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
       -device e1000,netdev=net0 \
-      -boot order=d \
-      -drive file=drive.img \
+      -drive file=drive.img,format=raw \
       -bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd \
     ;;
 
@@ -39,14 +38,11 @@ case $arch in
       -M virt,highmem=off \
       -cpu cortex-a72 \
       -nographic \
-      -drive file=drive.img \
       -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
       -device e1000,netdev=net0 \
+      -drive file=drive.img,format=raw \
       -kernel vmlinuz \
       -append "console=tty1 console=ttyAMA0,115200 root=PARTUUID=60c24cc1-f3f9-427a-8199-2e18c40c0001/PARTNROFF=1 init=/gokrazy/init rootwait panic=10 oops=panic"
-      #-drive if=none,file=drive.img,format=raw,id=mydisk \
-      #-device ich9-ahci,id=ahci -device ide-hd,drive=mydisk,bus=ahci.0 \
-      #-append "console=tty1 console=ttyAMA0,115200 root=/dev/sda2 rw init=/gokrazy/init rootwait panic=10 oops=panic"
     ;;
 
   # raspi3b emulator with manual kernel loading
@@ -68,7 +64,7 @@ case $arch in
         -dtb ./bcm2710-rpi-3-b-plus.dtb \
         -nographic \
         -serial mon:stdio \
-        -drive file=drive.img \
+        -drive file=drive.img,format=raw \
         -kernel vmlinuz \
         -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
         -device usb-net,netdev=net0
