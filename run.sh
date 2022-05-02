@@ -54,9 +54,16 @@ case $arch in
     # because for lower versions networking is missing.
     # It was introduced in qemu v5.2.0 via usb networking (-device usb-net), but it is very very slow at the point that gokrazy network updates fail.
     # For qemu versions >= v6.0.0, the /gokrazy/init process crashes early at gokrazy.Boot(). To be investigated.
+    qemu_version="$(qemu-system-aarch64 --version | sed -nr 's/^.*version\s([.0-9]*).*$/\1/p')"
+    if [[ "$qemu_version" != "5.2.0" ]]; then
+      echo "error: incompatible qemu-system-aarch64 version: $qemu_version. gokrazy on raspi3b can only run on 5.2.0"
+      exit 1;
+    fi
+
     # Extract the kernel (vmlinuz) and the dtb file from the drive.img first
     ./extract_kernel.sh
     qemu-system-aarch64 \
+      	-name gokrazy-arm64-raspi3b \
         -m 1024 \
         -no-reboot \
         -M raspi3b \
