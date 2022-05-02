@@ -3,7 +3,7 @@
 # ---------------------------
 # VARS
 # ---------------------------
-gokr_packer_version="v0.0.0-20220502001104-24f8b6f1882e"
+gokr_packer_version="v0.0.0-20220502230818-92279ca72b5e"
 gokr_packer_base="github.com/damdo/tools/cmd/gokr-packer"
 hostname="gokrazy"
 components=(
