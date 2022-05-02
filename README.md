@@ -1,25 +1,34 @@
 ## gokrazy-on-qemu
-A qemu emulator to develop for the https://gokrazy.org environment
+A qemu setup to develop for the [gokrazy](https://gokrazy.org) ecosystem.
 
 ```bash
-vagrant up && vagrant ssh
-
-# once within the vm shell
-
+# Obtain this repo.
+git clone https://github.com/damdo/gokrazy-on-qemu
 cd gokrazy-on-qemu/
 
-# build the drive.img the first time
-# available values for 'GOARCH' are: amd64, arm64
+# Tweak the Vagrantfile to your specific environment
+# e.g. update the networking bits to match your network card
+# or just ignore the vagrant bits if you have an environment
+# already properly setup for qemu.
+
+# Provision the vm.
+vagrant up
+
+# SSH into the vm.
+vagrant ssh
+cd gokrazy-on-qemu/
+
+# Build the drive.img the first time.
+# Available values for 'GOARCH' are: amd64, arm64
 GOARCH=<arch> ./build.sh
 
-# run the emulation machine
-# available values for 'MACHINE' are: amd64, arm64, arm64-auto, raspi3b
+# Run the emulation machine.
+# Available values for 'MACHINE' are: amd64, arm64, arm64-auto, raspi3b
 MACHINE=<machine> ./run.sh
 
-# for the following updates re-running the build will automatically
-# trigger an over-the-network (via http/https) update
+# For the following updates, change the components to be included in the gokrazy build
+# by modifiying the array list in the top section of build.sh.
+# Trigger the build will automatically
+# perform an over-the-network (via http/https) update to the gokrazy instance.
 GOARCH=<arch> ./build.sh
 ```
-
-#### TODO
-- [ ] multi platform compatible
