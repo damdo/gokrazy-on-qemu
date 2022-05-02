@@ -21,8 +21,9 @@ case $arch in
     ;;
   raspi3b)
     # Only works with qemu === v5.2.0
-    # because for lower versions the usb networking is missing
-    # and because for higher versions 6.0+, the /gokrazy/init process crashes early at gokrazy.Boot().
+    # because for lower versions networking is missing.
+    # It was introduced in qemu v5.2.0 via usb networking (-device usb-net), but it is very very slow at the point that gokrazy network updates fail.
+    # For qemu versions >= v6.0.0, the /gokrazy/init process crashes early at gokrazy.Boot(). To be investigated.
     # Extract the kernel (vmlinuz) and the dtb file from the drive.img first
     ./extract_kernel.sh
     qemu-system-aarch64 \
@@ -35,7 +36,8 @@ case $arch in
         -serial mon:stdio \
         -drive file=drive.img \
         -kernel vmlinuz \
-        -device usb-net,netdev=net0 -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 # introduced in qemu v5.2.0
+        -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
+        -device usb-net,netdev=net0
     ;;
   amd64)
     qemu-system-x86_64 \
