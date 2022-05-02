@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/jammy64"
-  config.vm.synced_folder "./", "/home/vagrant/gokrazy-emulator"
+  config.vm.synced_folder "./", "/home/vagrant/gokrazy-on-qemu"
   config.vm.provision :docker
   config.vm.provision "shell",
     inline: $provision,

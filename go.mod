@@ -1,4 +1,4 @@
-module hello
+module gokrazy-on-qemu
 
 go 1.18
 
@@ -13,7 +13,7 @@ require (
 	github.com/go-kit/log v0.2.0 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/godbus/dbus v0.0.0-20190402143921-271e53dc4968 // indirect
-	github.com/gokrazy/breakglass v0.0.0-20220417133245-48c5124500d6 // indirect
+	github.com/gokrazy/breakglass v0.0.0-20220430192718-c21964dfd8fa // indirect
 	github.com/gokrazy/firmware v0.0.0-20220414034653-e4794d033084 // indirect
 	github.com/gokrazy/gokrazy v0.0.0-20220426183729-6f63dfee3e2b // indirect
 	github.com/gokrazy/kernel v0.0.0-20220428074446-79ddc444cba0 // indirect
@@ -43,7 +43,6 @@ require (
 	github.com/prometheus/exporter-toolkit v0.7.1 // indirect
 	github.com/prometheus/node_exporter v1.3.1-0.20220425111307-5ea0a936cbd0 // indirect
 	github.com/prometheus/procfs v0.7.4-0.20211011103944-1a7a2bd3279f // indirect
-	github.com/rtr7/kernel v0.0.0-20220428041536-b7adea4c9959 // indirect
 	github.com/safchain/ethtool v0.2.0 // indirect
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a // indirect
 	go.uber.org/atomic v1.7.0 // indirect
