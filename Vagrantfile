@@ -42,7 +42,7 @@ echo "alias k=kubectl" >> /home/vagrant/.profile
 sudo sed -i~orig -e 's/# deb-src/deb-src/' /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get -yq build-dep qemu
-sudo apt-get -yq install itstool
+sudo apt-get -yq install itstool qemu-efi-aarch64
 cd /tmp && \
   curl -SLO https://download.qemu.org/qemu-5.2.0.tar.xz && \
   tar -xf qemu-5.2.0.tar.xz && \
