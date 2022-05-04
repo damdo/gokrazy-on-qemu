@@ -21,7 +21,7 @@ case $arch in
       -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
       -device e1000,netdev=net0 \
       -drive file=drive.img,format=raw \
-      -bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd \
+      -bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd
     ;;
 
   # arm64 emulator with manual kernel loading

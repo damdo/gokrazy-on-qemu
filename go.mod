@@ -43,6 +43,7 @@ require (
 	github.com/prometheus/exporter-toolkit v0.7.1 // indirect
 	github.com/prometheus/node_exporter v1.3.1-0.20220425111307-5ea0a936cbd0 // indirect
 	github.com/prometheus/procfs v0.7.4-0.20211011103944-1a7a2bd3279f // indirect
+	github.com/rtr7/kernel v0.0.0-20220428041536-b7adea4c9959 // indirect
 	github.com/safchain/ethtool v0.2.0 // indirect
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a // indirect
 	go.uber.org/atomic v1.7.0 // indirect

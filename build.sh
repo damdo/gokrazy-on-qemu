@@ -3,7 +3,7 @@
 # ---------------------------
 # VARS
 # ---------------------------
-gokr_packer_version="v0.0.0-20220502230818-92279ca72b5e"
+gokr_packer_version="v0.0.0-20220503230147-f61c962e797e"
 gokr_packer_base="github.com/damdo/tools/cmd/gokr-packer"
 hostname="gokrazy"
 components=(
@@ -17,10 +17,12 @@ case $arch in
   arm64)
     kernel_package="github.com/gokrazy/kernel"
     firmware_package="github.com/gokrazy/firmware"
+    serial_console="ttyAMA0,115200"
     ;;
   amd64)
     kernel_package="github.com/rtr7/kernel"
     firmware_package="github.com/rtr7/kernel"
+    serial_console="ttyS0,115200"
     ;;
   *)
     echo -n "unsupported arch ${arch}"
@@ -78,14 +80,15 @@ fi
 # ---------------------------
 # GOKR-PACKER RUN
 # ---------------------------
+
 GOOS=linux GOARCH="${arch}" GOBIN=$(pwd) ./gokr-packer \
  -hostname="${hostname}" \
  -kernel_package="${kernel_package}" \
  -firmware_package="${firmware_package}" \
- -serial_console="ttyS0,115200" \
- -target_storage_bytes=1258299392 \
+ -target_storage_bytes=2147483648 \
  -overwrite=drive.img \
  -update="${shouldupdate}" \
+ -serial_console="${serial_console}" \
  ${unversioned_components[@]}
 
 # ---------------------------
