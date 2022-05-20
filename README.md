@@ -23,7 +23,7 @@ cd gokrazy-on-qemu/
 GOARCH=<arch> ./build.sh
 
 # Run the emulation machine.
-# Available values for 'MACHINE' are: amd64, arm64, arm64-auto, raspi3b
+# Available values for 'MACHINE' are: amd64, arm64, raspi3b
 MACHINE=<machine> ./run.sh
 
 # For the following updates, change the components to be included in the gokrazy build

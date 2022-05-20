@@ -3,14 +3,7 @@
 arch="${MACHINE:=amd64}"
 case $arch in
   # arm64 emulator with kernel auto loading
-  # it uses the QEMU_EFI bios to load /EFI/BOOT/BOOTAA64.efi which loads grub.efi,
-  # which through the config provided via grub.cfg, loads the kernel and passes params to it
-  #
-  # IMPORTANT: to work it requires the drive.img to contain in its first partition:
-  # - /EFI/BOOT/BOOTAA64.efi
-  # - /EFI/BOOT/grub.efi
-  # - /EFI/BOOT/grub.cfg
-  arm64-auto)
+  arm64)
     qemu-system-aarch64 \
       -name gokrazy-arm64 \
       -m 3G \
@@ -22,27 +15,6 @@ case $arch in
       -device e1000,netdev=net0 \
       -drive file=drive.img,format=raw \
       -bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd
-    ;;
-
-  # arm64 emulator with manual kernel loading
-  # requires kernel (./vmlinuz) extraction from the drive.img,
-  # to be used as an arg (with -kernel and -append)
-  # to instruct the vm on how to load the kernel
-  arm64)
-    # Extract the kernel (vmlinuz) from the drive.img first
-    ./extract_kernel.sh
-    qemu-system-aarch64 \
-      -name gokrazy-arm64 \
-      -m 3G \
-      -smp $(nproc) \
-      -M virt,highmem=off \
-      -cpu cortex-a72 \
-      -nographic \
-      -netdev user,id=net0,hostfwd=tcp::8080-:80,hostfwd=tcp::2222-:22 \
-      -device e1000,netdev=net0 \
-      -drive file=drive.img,format=raw \
-      -kernel vmlinuz \
-      -append "console=tty1 console=ttyAMA0,115200 root=PARTUUID=60c24cc1-f3f9-427a-8199-2e18c40c0001/PARTNROFF=1 init=/gokrazy/init rootwait panic=10 oops=panic"
     ;;
 
   # raspi3b emulator with manual kernel loading

@@ -3,8 +3,8 @@
 # ---------------------------
 # VARS
 # ---------------------------
-gokr_packer_version="v0.0.0-20220503230147-f61c962e797e"
-gokr_packer_base="github.com/damdo/tools/cmd/gokr-packer"
+gokr_packer_version="v0.0.0-20220507152425-0d3aef012e03"
+gokr_packer_base="github.com/gokrazy/tools/cmd/gokr-packer"
 hostname="gokrazy"
 components=(
   github.com/gokrazy/breakglass
