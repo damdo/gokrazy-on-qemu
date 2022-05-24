@@ -13,7 +13,8 @@ Vagrant.configure("2") do |config|
     v.memory = 20480
     v.cpus = 8
   end
-  config.vm.network "public_network", bridge: "en0: Wi-Fi (Wireless)"
+  #config.vm.network "public_network", bridge: "en0: Wi-Fi (Wireless)"
+  config.vm.network "public_network", bridge: "en7: Thunderbolt Ethernet"
 end
 
 $provision = <<SCRIPT
