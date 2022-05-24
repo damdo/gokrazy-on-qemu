@@ -9,6 +9,7 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
+	github.com/damdo/gokrazy-selfupdate v0.0.0-20220522215240-8227694e4e55 // indirect
 	github.com/ema/qdisc v0.0.0-20200603082823-62d0308e3e00 // indirect
 	github.com/go-kit/log v0.2.0 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
@@ -20,6 +21,7 @@ require (
 	github.com/gokrazy/rpi-eeprom v0.0.0-20220428044129-9d5655055c00 // indirect
 	github.com/gokrazy/serial-busybox v0.0.0-20211029180129-24c7ca0a91ab // indirect
 	github.com/gokrazy/timestamps v0.0.0-20200713073712-54fdc319126e // indirect
+	github.com/gokrazy/updater v0.0.0-20211121155532-30ae8cd650ea // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect
 	github.com/hashicorp/go-envparse v0.0.0-20200406174449-d9cfd743a15e // indirect
@@ -28,6 +30,8 @@ require (
 	github.com/josharian/native v1.0.0 // indirect
 	github.com/jpillora/backoff v1.0.0 // indirect
 	github.com/jsimonetti/rtnetlink v1.1.1 // indirect
+	github.com/klauspost/compress v1.15.4 // indirect
+	github.com/klauspost/pgzip v1.2.5 // indirect
 	github.com/lufia/iostat v1.2.1 // indirect
 	github.com/mattn/go-xmlrpc v0.0.3 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
@@ -43,8 +47,10 @@ require (
 	github.com/prometheus/exporter-toolkit v0.7.1 // indirect
 	github.com/prometheus/node_exporter v1.3.1-0.20220425111307-5ea0a936cbd0 // indirect
 	github.com/prometheus/procfs v0.7.4-0.20211011103944-1a7a2bd3279f // indirect
+	github.com/rasky/multigz v0.0.0-20151203180307-c45a234f2963 // indirect
 	github.com/rtr7/kernel v0.0.0-20220428041536-b7adea4c9959 // indirect
 	github.com/safchain/ethtool v0.2.0 // indirect
+	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
@@ -58,4 +64,5 @@ require (
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v3 v3.0.0 // indirect
 )

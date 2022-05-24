@@ -17,6 +17,7 @@ components=(
   github.com/gokrazy/serial-busybox
   github.com/prometheus/node_exporter@5ea0a93
   github.com/gokrazy/timestamps
+  github.com/damdo/gokrazy-selfupdate@8227694
 )
 arch="${GOARCH:=amd64}"
 case $arch in
@@ -49,6 +50,13 @@ fi
 # ---------------------------
 # EXTRAFILES/FLAGS/ENV VARS
 # ---------------------------
+
+# selfupdate
+mkdir -p flags/github.com/damdo/gokrazy-selfupdate/
+cat > flags/github.com/damdo/gokrazy-selfupdate/flags.txt <<'EOT'
+--update-endpoint=http://192.168.30.30:8081
+--check-interval=10s
+EOT
 
 # breakglass
 mkdir -p extrafiles/github.com/gokrazy/breakglass/etc/
