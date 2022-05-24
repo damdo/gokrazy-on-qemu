@@ -22,7 +22,7 @@ $provision = <<SCRIPT
 usermod -a -G docker $USER
 
 # build tools
-apt update -yq && apt install -yq curl
+apt update -yq && apt install -yq curl zip
 
 # install go
 snap install go --channel="${GO_VERSION}"/stable --classic
