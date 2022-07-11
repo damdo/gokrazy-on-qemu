@@ -7,27 +7,32 @@
 # output chooses whether to output a single drive img or multiple partition imgs
 # single: one drive.img
 # multi: boot: boot.img, root: root.squashfs, mbr: mbr.img
+# ota: forces over the air (http) update
 # default is: single
 output="${OUTPUT:=single}"
-gokr_packer_version="v0.0.0-20220507152425-0d3aef012e03"
+gokr_packer_version="v0.0.0-20220709172709-af53862da722"
 gokr_packer_base="github.com/gokrazy/tools/cmd/gokr-packer"
+gokrazy_version="v0.0.0-20220619152026-e92d116fc1be"
+gokrazy_base="github.com/gokrazy/gokrazy"
 hostname="gokrazy"
 components=(
-  github.com/gokrazy/breakglass
-  github.com/gokrazy/serial-busybox
+  github.com/gokrazy/gokrazy@latest
+  github.com/gokrazy/breakglass@latest
+  github.com/gokrazy/serial-busybox@latest
   github.com/prometheus/node_exporter@5ea0a93
-  github.com/gokrazy/timestamps
+  github.com/gokrazy/timestamps@latest
 )
+os="${GOOS:=linux}"
 arch="${GOARCH:=amd64}"
 case $arch in
   arm64)
-    kernel_package="github.com/gokrazy/kernel"
-    firmware_package="github.com/gokrazy/firmware"
+    kernel_package="github.com/gokrazy/kernel@latest"
+    firmware_package="github.com/gokrazy/firmware@latest"
     serial_console="ttyAMA0,115200"
     ;;
   amd64)
-    kernel_package="github.com/rtr7/kernel"
-    firmware_package="github.com/rtr7/kernel"
+    kernel_package="github.com/rtr7/kernel@latest"
+    firmware_package="github.com/rtr7/kernel@latest"
     serial_console="ttyS0,115200"
     ;;
   *)
@@ -37,13 +42,19 @@ case $arch in
 esac
 
 # ---------------------------
+# GOKRAZY SETUP
+# ---------------------------
+echo "ensuring gokrazy package version: '${gokr_packer_version}'.."
+GOBIN=$(pwd) GOARCH=amd64 GOOS=$os go get "${gokrazy_base}@${gokrazy_version}"
+
+# ---------------------------
 # GOKR-PACKER SETUP
 # ---------------------------
 version="$(GOBIN=$(pwd) GOARCH=amd64 go version -m ./gokr-packer 2>/dev/null | grep mod | sed 's/[[:space:]]/,/g' | cut -d ',' -f4)"
 if [[ ${gokr_packer_version} != ${version} ]]; then
   echo "gokr-packer version '${version}' is not the desired one '${gokr_packer_version}'"
   echo "fetching '${gokr_packer_version}'.."
-  GOBIN=$(pwd) GOARCH=amd64 go install "${gokr_packer_base}@${gokr_packer_version}"
+  GOBIN=$(pwd) GOARCH=amd64 GOOS=$os go install "${gokr_packer_base}@${gokr_packer_version}"
 fi
 
 # ---------------------------
@@ -72,19 +83,21 @@ do
   fi
 done
 
+if [[ "$firmware_package" == *"@"* ]]; then
+  go get $firmware_package
+fi
+
+if [[ "$kernel_package" == *"@"* ]]; then
+  go get $kernel_package
+fi
+
+unversioned_firmware_package="$(echo "$firmware_package" | sed 's/@.*//g')"
+unversioned_kernel_package="$(echo "$kernel_package" | sed 's/@.*//g')"
+
 # ---------------------------
 # SHOULD UPDATE?
 # ---------------------------
-# if a qemu machine with `-name gokrazy` is already running, then update and write to file
-# else just write to file.
-if [[ "$(ps -ef | grep qemu-system- | grep gokrazy | wc -l)" -eq 1 ]]; then
-  if [[ "$output" == "multi" ]]; then
-    echo "ERROR: would update OTA the existing gokrazy installation but can't because 'multi' mode is set, should be 'single'."
-  fi
-  shouldupdate="http://gokrazy:$(cat ~/.config/gokrazy/http-password.txt)@127.0.0.1:8080/"
-else
-  shouldupdate=""
-fi
+shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/.config/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
 
 # ---------------------------
 # GOKR-PACKER RUN
@@ -105,12 +118,14 @@ elif  [[ "$output" == "multi" ]]; then
    -overwrite_root=root.squashfs
    -overwrite_mbr=mbr.img
   )
+elif  [[ "$output" == "ota" ]]; then
+  shouldupdate=$shouldupdate_content
 fi
 
 args+=(
  -hostname="${hostname}"
- -kernel_package="${kernel_package}"
- -firmware_package="${firmware_package}"
+ -kernel_package="${unversioned_kernel_package}"
+ -firmware_package="${unversioned_firmware_package}"
  -target_storage_bytes=2147483648
  -serial_console="${serial_console}"
  -update="${shouldupdate}"

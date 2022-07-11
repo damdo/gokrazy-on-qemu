@@ -9,41 +9,48 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
+	github.com/creack/pty v1.1.9 // indirect
 	github.com/ema/qdisc v0.0.0-20200603082823-62d0308e3e00 // indirect
 	github.com/go-kit/log v0.2.0 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/godbus/dbus v0.0.0-20190402143921-271e53dc4968 // indirect
-	github.com/gokrazy/breakglass v0.0.0-20220430192718-c21964dfd8fa // indirect
-	github.com/gokrazy/firmware v0.0.0-20220414034653-e4794d033084 // indirect
-	github.com/gokrazy/gokrazy v0.0.0-20220426183729-6f63dfee3e2b // indirect
-	github.com/gokrazy/kernel v0.0.0-20220428074446-79ddc444cba0 // indirect
-	github.com/gokrazy/rpi-eeprom v0.0.0-20220428044129-9d5655055c00 // indirect
-	github.com/gokrazy/serial-busybox v0.0.0-20211029180129-24c7ca0a91ab // indirect
-	github.com/gokrazy/timestamps v0.0.0-20200713073712-54fdc319126e // indirect
+	github.com/gokrazy/breakglass v0.0.0-20220709172639-ccc003f8eaa9 // indirect
+	github.com/gokrazy/firmware v0.0.0-20220730162844-e00f23fbdb2e // indirect
+	github.com/gokrazy/gokrazy v0.0.0-20220619152026-e92d116fc1be // indirect
+	github.com/gokrazy/internal v0.0.0-20220709172510-3a50f98beeea // indirect
+	github.com/gokrazy/kernel v0.0.0-20220802072004-af3a104d929a // indirect
+	github.com/gokrazy/rpi-eeprom v0.0.0-20220723040153-8c98dac71b8d // indirect
+	github.com/gokrazy/serial-busybox v0.0.0-20220707202424-c8bed987fb55 // indirect
+	github.com/gokrazy/timestamps v0.0.0-20220615183607-ec04c2289d1f // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect
+	github.com/google/renameio/v2 v2.0.0 // indirect
+	github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf // indirect
 	github.com/hashicorp/go-envparse v0.0.0-20200406174449-d9cfd743a15e // indirect
 	github.com/hodgesds/perf-utils v0.5.1 // indirect
 	github.com/illumos/go-kstat v0.0.0-20210513183136-173c9b0a9973 // indirect
 	github.com/josharian/native v1.0.0 // indirect
 	github.com/jpillora/backoff v1.0.0 // indirect
 	github.com/jsimonetti/rtnetlink v1.1.1 // indirect
+	github.com/kr/fs v0.1.0 // indirect
+	github.com/kr/pty v1.1.8 // indirect
 	github.com/lufia/iostat v1.2.1 // indirect
 	github.com/mattn/go-xmlrpc v0.0.3 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/mdlayher/genetlink v1.2.0 // indirect
 	github.com/mdlayher/netlink v1.6.0 // indirect
 	github.com/mdlayher/socket v0.2.3 // indirect
+	github.com/mdlayher/watchdog v0.0.0-20201005150459-8bdc4f41966b // indirect
 	github.com/mdlayher/wifi v0.0.0-20220320220353-954ff73a19a5 // indirect
 	github.com/mwitkow/go-conntrack v0.0.0-20190716064945-2f068394615f // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/pkg/sftp v1.13.5-0.20220330091711-a17a626ab843 // indirect
 	github.com/prometheus/client_golang v1.12.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.33.0 // indirect
 	github.com/prometheus/exporter-toolkit v0.7.1 // indirect
 	github.com/prometheus/node_exporter v1.3.1-0.20220425111307-5ea0a936cbd0 // indirect
 	github.com/prometheus/procfs v0.7.4-0.20211011103944-1a7a2bd3279f // indirect
-	github.com/rtr7/kernel v0.0.0-20220428041536-b7adea4c9959 // indirect
 	github.com/safchain/ethtool v0.2.0 // indirect
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a // indirect
 	go.uber.org/atomic v1.7.0 // indirect
@@ -58,4 +65,5 @@ require (
 	google.golang.org/protobuf v1.26.0 // indirect
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	rsc.io/goversion v1.2.0 // indirect
 )
