@@ -44,7 +44,7 @@ esac
 # ---------------------------
 # GOKRAZY SETUP
 # ---------------------------
-echo "ensuring gokrazy package version: '${gokr_packer_version}'.."
+echo "gokrazy ensuring version: '${gokr_packer_version}'"
 GOBIN=$(pwd) GOARCH=amd64 GOOS=$os go get "${gokrazy_base}@${gokrazy_version}"
 
 # ---------------------------

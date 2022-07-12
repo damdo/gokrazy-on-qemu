@@ -28,7 +28,20 @@ MACHINE=<machine> ./run.sh
 
 # For the following updates, change the components to be included in the gokrazy build
 # by modifiying the array list in the top section of build.sh.
-# Trigger the build will automatically
-# perform an over-the-network (via http/https) update to the gokrazy instance.
-GOARCH=<arch> ./build.sh
+# Setting OUTPUT=ota will automatically
+# perform an over-the-network (via http/https) update to a running gokrazy instance.
+GOARCH=<arch> OUTPUT=ota ./build.sh
+# Optionally the address for the ota can be tweaked by setting the SHOULDUPDATE_CONTENT env var.
+# GOARCH=<arch> SHOULDUPDATE_CONTENT="http://gokrazy:$(cat $HOME/.config/gokrazy/http-password.txt)@127.0.0.1:8080/" OUTPUT=ota ./build.sh
+
+# alternatively
+# Setting OUTPUT=single allows to force a rebuild of the img file.
+GOARCH=<arch> OUTPUT=single ./build.sh
+
+# alternatively
+# Setting OUTPUT=multi will output 3 separate files for:
+# boot: boot.img
+# root: root.squashfs
+# mbr: mbr.img
+GOARCH=<arch> OUTPUT=multi ./build.sh
 ```
