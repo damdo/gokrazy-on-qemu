@@ -10,9 +10,9 @@
 # ota: forces over the air (http) update
 # default is: single
 output="${OUTPUT:=single}"
-gokr_packer_version="v0.0.0-20220709172709-af53862da722"
+gokr_packer_version="latest"
 gokr_packer_base="github.com/gokrazy/tools/cmd/gokr-packer"
-gokrazy_version="v0.0.0-20220619152026-e92d116fc1be"
+gokrazy_version="latest"
 gokrazy_base="github.com/gokrazy/gokrazy"
 hostname="gokrazy"
 components=(
@@ -111,6 +111,10 @@ args=()
 if [[ "$output" == "single" ]]; then
   args+=(\
    -overwrite=drive.img
+  )
+elif [[ "$output" == "device" ]]; then
+  args+=(\
+   -overwrite=/dev/disk2
   )
 elif  [[ "$output" == "multi" ]]; then
   args+=(\

@@ -14,13 +14,13 @@ require (
 	github.com/go-kit/log v0.2.0 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/godbus/dbus v0.0.0-20190402143921-271e53dc4968 // indirect
-	github.com/gokrazy/breakglass v0.0.0-20220709172639-ccc003f8eaa9 // indirect
+	github.com/gokrazy/breakglass v0.0.0-20220918191812-3d820b07fad6 // indirect
 	github.com/gokrazy/firmware v0.0.0-20220730162844-e00f23fbdb2e // indirect
-	github.com/gokrazy/gokrazy v0.0.0-20220619152026-e92d116fc1be // indirect
+	github.com/gokrazy/gokrazy v0.0.0-20221009203647-fbb7618c25b4 // indirect
 	github.com/gokrazy/internal v0.0.0-20220709172510-3a50f98beeea // indirect
 	github.com/gokrazy/kernel v0.0.0-20220802072004-af3a104d929a // indirect
 	github.com/gokrazy/rpi-eeprom v0.0.0-20220723040153-8c98dac71b8d // indirect
-	github.com/gokrazy/serial-busybox v0.0.0-20220707202424-c8bed987fb55 // indirect
+	github.com/gokrazy/serial-busybox v0.0.0-20220918193710-d728912733ca // indirect
 	github.com/gokrazy/timestamps v0.0.0-20220615183607-ec04c2289d1f // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.7 // indirect
@@ -51,6 +51,7 @@ require (
 	github.com/prometheus/exporter-toolkit v0.7.1 // indirect
 	github.com/prometheus/node_exporter v1.3.1-0.20220425111307-5ea0a936cbd0 // indirect
 	github.com/prometheus/procfs v0.7.4-0.20211011103944-1a7a2bd3279f // indirect
+	github.com/rtr7/kernel v0.0.0-20221013042149-ed1f275fa6f7 // indirect
 	github.com/safchain/ethtool v0.2.0 // indirect
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a // indirect
 	go.uber.org/atomic v1.7.0 // indirect
@@ -59,7 +60,7 @@ require (
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20220330033206-e17cdc41300f // indirect
+	golang.org/x/sys v0.0.0-20220817070843-5a390386f1f2 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/appengine v1.6.6 // indirect
 	google.golang.org/protobuf v1.26.0 // indirect

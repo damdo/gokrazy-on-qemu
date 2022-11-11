@@ -4,6 +4,7 @@ gokr-packer
 vmlinuz
 *.dtb
 *.zip
-extrafiles\
-flags\
+extrafiles/
+flags/
+builddir/
 qemu-*.tar.xz
