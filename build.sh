@@ -20,7 +20,6 @@ components=(
   github.com/gokrazy/breakglass@latest
   github.com/gokrazy/serial-busybox@latest
   github.com/prometheus/node_exporter@5ea0a93
-  github.com/gokrazy/timestamps@latest
 )
 os="${GOOS:=linux}"
 arch="${GOARCH:=amd64}"
@@ -97,7 +96,12 @@ unversioned_kernel_package="$(echo "$kernel_package" | sed 's/@.*//g')"
 # ---------------------------
 # SHOULD UPDATE?
 # ---------------------------
-shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/.config/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
+
+if [[ "$os" == "darwin" ]]; then
+    shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/Library/Application\ Support/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
+else
+    shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/.config/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
+fi
 
 # ---------------------------
 # GOKR-PACKER RUN

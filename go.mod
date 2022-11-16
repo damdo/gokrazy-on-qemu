@@ -14,11 +14,11 @@ require (
 	github.com/go-kit/log v0.2.0 // indirect
 	github.com/go-logfmt/logfmt v0.5.1 // indirect
 	github.com/godbus/dbus v0.0.0-20190402143921-271e53dc4968 // indirect
-	github.com/gokrazy/breakglass v0.0.0-20220918191812-3d820b07fad6 // indirect
-	github.com/gokrazy/firmware v0.0.0-20220730162844-e00f23fbdb2e // indirect
-	github.com/gokrazy/gokrazy v0.0.0-20221009203647-fbb7618c25b4 // indirect
+	github.com/gokrazy/breakglass v0.0.0-20221108205153-2c1eed342dd4 // indirect
+	github.com/gokrazy/firmware v0.0.0-20221112040708-2d61670cb2e8 // indirect
+	github.com/gokrazy/gokrazy v0.0.0-20221113114523-dd415c9ee654 // indirect
 	github.com/gokrazy/internal v0.0.0-20220709172510-3a50f98beeea // indirect
-	github.com/gokrazy/kernel v0.0.0-20220802072004-af3a104d929a // indirect
+	github.com/gokrazy/kernel v0.0.0-20221111044103-9ba55607057a // indirect
 	github.com/gokrazy/rpi-eeprom v0.0.0-20220723040153-8c98dac71b8d // indirect
 	github.com/gokrazy/serial-busybox v0.0.0-20220918193710-d728912733ca // indirect
 	github.com/gokrazy/timestamps v0.0.0-20220615183607-ec04c2289d1f // indirect
@@ -51,7 +51,7 @@ require (
 	github.com/prometheus/exporter-toolkit v0.7.1 // indirect
 	github.com/prometheus/node_exporter v1.3.1-0.20220425111307-5ea0a936cbd0 // indirect
 	github.com/prometheus/procfs v0.7.4-0.20211011103944-1a7a2bd3279f // indirect
-	github.com/rtr7/kernel v0.0.0-20221013042149-ed1f275fa6f7 // indirect
+	github.com/rtr7/kernel v0.0.0-20221117035324-989bbb15761e // indirect
 	github.com/safchain/ethtool v0.2.0 // indirect
 	github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a // indirect
 	go.uber.org/atomic v1.7.0 // indirect
