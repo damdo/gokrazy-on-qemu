@@ -22,6 +22,7 @@ components=(
   github.com/prometheus/node_exporter@5ea0a93
 )
 
+# detect builder os
 builder_os=""
 if [ "$(uname)" == "Darwin" ]; then
     builder_os="darwin"
@@ -29,8 +30,18 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     builder_os="linux"
 fi
 
-arch="${GOARCH:=amd64}"
-case $arch in
+# detect builder arch
+builder_arch=""
+uname_arch="$(uname -m)"
+if [ "${uname_arch}"  == "x86_64" ]; then
+    builder_arch="amd64"
+else
+    builder_arch="${uname_arch}"
+fi
+
+# specified gokrazy arch
+gokrazy_arch="${GOARCH:=amd64}"
+case "${gokrazy_arch}" in
   arm64)
     kernel_package="github.com/gokrazy/kernel@latest"
     firmware_package="github.com/gokrazy/firmware@latest"
@@ -42,7 +53,7 @@ case $arch in
     serial_console="ttyS0,115200"
     ;;
   *)
-    echo -n "unsupported gokrazy arch ${arch}"
+    echo -n "unsupported gokrazy arch ${gokrazy_arch}"
     exit
     ;;
 esac
@@ -51,16 +62,16 @@ esac
 # GOKRAZY SETUP
 # ---------------------------
 echo "gokrazy ensuring version: '${gokr_packer_version}'"
-GOBIN=$(pwd) go get "${gokrazy_base}@${gokrazy_version}"
+GOBIN=$(pwd) GOARCH="${builder_arch}" GOOS="${builder_os}" go get "${gokrazy_base}@${gokrazy_version}"
 
 # ---------------------------
 # GOKR-PACKER SETUP
 # ---------------------------
-version="$(GOBIN=$(pwd) go version -m ./gokr-packer 2>/dev/null | grep mod | sed 's/[[:space:]]/,/g' | cut -d ',' -f4)"
+version="$(GOBIN=$(pwd) GOARCH=${builder_arch} GOOS=${builder_os} go version -m ./gokr-packer 2>/dev/null | grep mod | sed 's/[[:space:]]/,/g' | cut -d ',' -f4)"
 if [[ ${gokr_packer_version} != ${version} ]]; then
   echo "gokr-packer version '${version}' is not the desired one '${gokr_packer_version}'"
   echo "fetching '${gokr_packer_version}'.."
-  GOBIN=$(pwd) go install "${gokr_packer_base}@${gokr_packer_version}"
+  GOBIN=$(pwd) GOARCH="${builder_arch}" GOOS="${builder_os}" go install "${gokr_packer_base}@${gokr_packer_version}"
 fi
 
 # ---------------------------
@@ -104,7 +115,7 @@ unversioned_kernel_package="$(echo "$kernel_package" | sed 's/@.*//g')"
 # SHOULD UPDATE?
 # ---------------------------
 
-if [[ "builder_$os" == "darwin" ]]; then
+if [[ "${builder_os}" == "darwin" ]]; then
     shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/Library/Application\ Support/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
 else
     shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/.config/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
@@ -147,7 +158,7 @@ args+=(
  ${unversioned_components[@]}
 )
 
-GOOS=linux GOARCH="${arch}" GOBIN=$(pwd) ./gokr-packer "${args[@]}"
+GOOS=linux GOARCH="${gokrazy_arch}" GOBIN=$(pwd) ./gokr-packer "${args[@]}"
 
 # ---------------------------
 # COMPRESS
