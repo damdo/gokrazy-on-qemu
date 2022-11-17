@@ -21,7 +21,14 @@ components=(
   github.com/gokrazy/serial-busybox@latest
   github.com/prometheus/node_exporter@5ea0a93
 )
-os="${GOOS:=linux}"
+
+builder_os=""
+if [ "$(uname)" == "Darwin" ]; then
+    builder_os="darwin"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    builder_os="linux"
+fi
+
 arch="${GOARCH:=amd64}"
 case $arch in
   arm64)
@@ -35,7 +42,7 @@ case $arch in
     serial_console="ttyS0,115200"
     ;;
   *)
-    echo -n "unsupported arch ${arch}"
+    echo -n "unsupported gokrazy arch ${arch}"
     exit
     ;;
 esac
@@ -44,16 +51,16 @@ esac
 # GOKRAZY SETUP
 # ---------------------------
 echo "gokrazy ensuring version: '${gokr_packer_version}'"
-GOBIN=$(pwd) GOARCH=amd64 GOOS=$os go get "${gokrazy_base}@${gokrazy_version}"
+GOBIN=$(pwd) go get "${gokrazy_base}@${gokrazy_version}"
 
 # ---------------------------
 # GOKR-PACKER SETUP
 # ---------------------------
-version="$(GOBIN=$(pwd) GOARCH=amd64 go version -m ./gokr-packer 2>/dev/null | grep mod | sed 's/[[:space:]]/,/g' | cut -d ',' -f4)"
+version="$(GOBIN=$(pwd) go version -m ./gokr-packer 2>/dev/null | grep mod | sed 's/[[:space:]]/,/g' | cut -d ',' -f4)"
 if [[ ${gokr_packer_version} != ${version} ]]; then
   echo "gokr-packer version '${version}' is not the desired one '${gokr_packer_version}'"
   echo "fetching '${gokr_packer_version}'.."
-  GOBIN=$(pwd) GOARCH=amd64 GOOS=$os go install "${gokr_packer_base}@${gokr_packer_version}"
+  GOBIN=$(pwd) go install "${gokr_packer_base}@${gokr_packer_version}"
 fi
 
 # ---------------------------
@@ -97,7 +104,7 @@ unversioned_kernel_package="$(echo "$kernel_package" | sed 's/@.*//g')"
 # SHOULD UPDATE?
 # ---------------------------
 
-if [[ "$os" == "darwin" ]]; then
+if [[ "builder_$os" == "darwin" ]]; then
     shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/Library/Application\ Support/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
 else
     shouldupdate_content="${SHOULDUPDATE_CONTENT:="http://gokrazy:$(cat $HOME/.config/gokrazy/http-password.txt)@127.0.0.1:8080/"}"
