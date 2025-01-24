@@ -1,4 +1,8 @@
+## ARCHIVED
+This repo is archived in favour of the official vm funcionality included in gokrazy's `gok vm`. For details see: https://github.com/gokrazy/tools/commit/b8ffcd451e68c9554b766b0f57a6de4256130508
+
 ## gokrazy-on-qemu
+
 A qemu setup to develop for the [gokrazy](https://gokrazy.org) ecosystem.
 
 To set this up, you can choose:
